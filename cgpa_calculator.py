@@ -9,35 +9,28 @@ def calculate_percentage(sgpas, credits):
     return cgpa, percentage
 
 # Streamlit app
-st.title("CGPA to Percentage Calculator for BPUT")
-st.write("This calculator helps BPUT(Biju Patnaik University of Technology) students convert their CGPA to percentage based on their SGPA and credit points.")
+st.title("BPUT CGPA to Percentage Calculator")
+st.write("This calculator helps BPUT(Biju Patnaik University of Technology) students convert their CGPA to percentage based on SGPA and credit points.")
 
 # Explanation section
 with st.expander("Click here to see how the calculator works"):
     st.write("""
-    ### How the Code Works:
+    ### How the Calculator Works:
     1. **Inputs Required:**
-       - **SGPA for each semester:** You need to enter the SGPA for each semester.
-       - **Credits for each semester:** Default credit points are pre-filled as per BPUT standards but can be adjusted if necessary.
+       - **SGPA for each semester**: Placeholder asks you to enter SGPA manually.
+       - **Credits for each semester**: Default credit points are pre-filled based on BPUT standards but can be adjusted if needed.
     2. **Default Credit Points:**
-       - The app uses standard BPUT credit values:
-         - For **regular students**, the credits are:  
-           `[26, 26, 24, 24, 24, 24, 20, 16]` (1st to 8th semester).  
-         - For **lateral entry students**, the credits are:  
-           `[24, 24, 24, 24, 20, 16]` (3rd to 8th semester).
-    3. **Calculation Formula:**
-       - **CGPA** is calculated as:  
-         \[
-         \text{CGPA} = \frac{\sum (\text{SGPA} \times \text{Credits})}{\text{Total Credits}}
-         \]
-       - **Percentage** is calculated as:  
-         \[
-         \text{Percentage} = (\text{CGPA} - 0.5) \times 10
-         \]
-    4. **How to Use:**
+       - **Regular Students**:  
+         Credits for all 8 semesters are `[26, 26, 24, 24, 24, 24, 20, 16]`.
+       - **Lateral Entry Students**:  
+         Credits for semesters 3 to 8 are `[24, 24, 24, 24, 20, 16]`.
+    3. **Calculation Formula**:
+       - CGPA = (Sum of SGPA * Credits) / Total Credits.
+       - Percentage = (CGPA - 0.5) * 10.
+    4. **How to Use**:
        - Select whether you are a **regular** or **lateral entry** student.
-       - Enter your SGPA for the relevant semesters.
-       - Verify or modify the credit points for each semester.
+       - Enter your SGPA for each semester.
+       - Verify or change the credit points if needed.
        - Click **Calculate** to see your CGPA and percentage.
     """)
 
@@ -60,18 +53,31 @@ st.write("### Enter SGPA and Modify Credits (if needed):")
 for i, sem in enumerate(semesters):
     col1, col2 = st.columns(2)
     with col1:
-        sgpas.append(st.number_input(f"SGPA for Semester {sem}", min_value=0.0, max_value=10.0, step=0.01))
+        # Use placeholder instead of default value
+        sgpas.append(
+            st.text_input(f"SGPA for Semester {sem}", placeholder="Enter SGPA")
+        )
     with col2:
-        modified_credits.append(st.number_input(f"Credits for Semester {sem}", value=default_credits[i], min_value=1, max_value=30))
+        modified_credits.append(
+            st.number_input(f"Credits for Semester {sem}", value=default_credits[i], min_value=1, max_value=30)
+        )
+
+# Convert SGPA inputs from string to float, handling errors
+try:
+    sgpas = [float(sgpa) for sgpa in sgpas if sgpa.strip() != ""]
+except ValueError:
+    st.error("Please enter valid SGPA values!")
 
 # Calculate CGPA and percentage
 if st.button("Calculate"):
-    cgpa, percentage = calculate_percentage(sgpas, modified_credits)
-    st.write("### Result:")
-    st.write(f"**CGPA:** {cgpa:.2f}")
-    st.write(f"**Percentage:** {percentage:.2f}%")
+    if len(sgpas) != len(semesters):
+        st.error("Please fill in SGPA values for all semesters!")
+    else:
+        cgpa, percentage = calculate_percentage(sgpas, modified_credits)
+        st.write("### Result:")
+        st.write(f"**CGPA:** {cgpa:.2f}")
+        st.write(f"**Percentage:** {percentage:.2f}%")
 
 st.write("---")
-st.write("### Credits :")
 st.write("Developed with ❤️ Shankarsan.")
 st.write("For any issues, contact me at: (kirantechno7@gmail.com).")
