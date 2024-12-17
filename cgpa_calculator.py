@@ -79,5 +79,5 @@ if st.button("Calculate"):
         st.write(f"**Percentage:** {percentage:.2f}%")
 
 st.write("---")
-st.write("Developed with ❤️ Shankarsan.")
+st.write("Developed with ❤️ by Shankarsan.")
 st.write("For any issues, contact me at: (kirantechno7@gmail.com).")
