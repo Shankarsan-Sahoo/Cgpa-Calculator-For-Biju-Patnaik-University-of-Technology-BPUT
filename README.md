@@ -25,6 +25,8 @@ Built using **Streamlit**, this tool helps both **regular** and **lateral entry*
 [Click here to use the tool](https://cgpatopercentagecalculatorbput.streamlit.app)
 
 ---
+[![Watch on YouTube](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube)](https://youtube.com/shorts/lEcogoywUDI?si=swQ6fnElm5dSXaj3)
+
 
 ## 🧮 Calculation Formula:
 The percentage is calculated using the following formula:  
