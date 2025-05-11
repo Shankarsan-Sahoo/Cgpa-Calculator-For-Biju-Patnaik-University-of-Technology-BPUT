@@ -81,4 +81,3 @@ if st.button("Calculate"):
 st.write("---")
 st.write("Developed with ❤️ by Shankarsan.")
 st.write("For any issues, contact me at: (kirantechno7@gmail.com).")
-st.write("For any issues, contact me at: (kirantechno7@gmail.com).")
