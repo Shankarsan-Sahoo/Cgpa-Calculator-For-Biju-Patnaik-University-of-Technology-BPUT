@@ -113,5 +113,5 @@ if st.button("Calculate"):
         st.write(f"**Percentage:** {percentage:.2f}%")
 
 st.markdown("---")
-st.markdown("Developed with ❤️ by Shankarsan.") 
-For any issues, contact me at: [kirantechno7@gmail.com](mailto:kirantechno7@gmail.com)")
+st.markdown("""Developed with ❤️ by Shankarsan.
+For any issues, contact me at: [kirantechno7@gmail.com](mailto:kirantechno7@gmail.com)""")
