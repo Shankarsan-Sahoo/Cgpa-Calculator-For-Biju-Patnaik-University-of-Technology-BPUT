@@ -48,7 +48,7 @@ with st.expander("📚 How to Get Your Semester-wise SGPA and Credits"):
     """)
 
 # Shortcut: Direct CGPA to Percentage Converter
-st.markdown("## 🎯 Already Know Your CGPA?")
+st.write("### 🎯 Already Know Your CGPA?")
 with st.expander("Click here to directly convert CGPA to Percentage"):
     col1, col2 = st.columns(2)
     with col1:
