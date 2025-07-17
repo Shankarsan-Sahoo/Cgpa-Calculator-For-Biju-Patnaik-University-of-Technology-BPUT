@@ -10,7 +10,7 @@ def calculate_percentage(sgpas, credits):
 
 # Streamlit app
 st.title("BPUT CGPA to Percentage Calculator")
-st.write("This calculator helps BPUT(Biju Patnaik University of Technology) students convert their CGPA to percentage based on SGPA and credit points.")
+st.write("This calculator helps BPUT (Biju Patnaik University of Technology) students convert their CGPA to percentage based on SGPA and credit points.")
 
 # Explanation section
 with st.expander("Click here to see how the calculator works"):
@@ -23,7 +23,7 @@ with st.expander("Click here to see how the calculator works"):
        - **Regular Students**:  
          Credits for all 8 semesters are `[26, 26, 24, 24, 24, 24, 20, 16]`.
        - **Lateral Entry Students**:  
-         Credits for semesters 3 to 8 are `[24, 24, 24, 24, 20, 16]`.
+         Credits for semesters 3 to 8 are `[22, 24, 22, 22, 23, 6]`.
     3. **Calculation Formula**:
        - CGPA = (Sum of SGPA * Credits) / Total Credits.
        - Percentage = (CGPA - 0.5) * 10.
@@ -33,6 +33,7 @@ with st.expander("Click here to see how the calculator works"):
        - Verify or change the credit points if needed.
        - Click **Calculate** to see your CGPA and percentage.
     """)
+
 # Additional guide for getting SGPA and Credits
 with st.expander("📚 How to Get Your Semester-wise SGPA and Credits"):
     st.write("""
@@ -48,7 +49,7 @@ with st.expander("📚 How to Get Your Semester-wise SGPA and Credits"):
     """)
 
 # Shortcut: Direct CGPA to Percentage Converter
-st.write("### 🎯 Already Know Your CGPA?")
+st.subheader("🎯 Already Know Your CGPA?")
 with st.expander("Click here to directly convert CGPA to Percentage"):
     col1, col2 = st.columns(2)
     with col1:
@@ -62,28 +63,25 @@ with st.expander("Click here to directly convert CGPA to Percentage"):
         st.caption("📌 Formula used: (CGPA - 0.5) × 10")
         st.info(f"Based on a total of **{user_credits} credits**.")
 
-
-
 # Ask if the user is a lateral entry student
 lateral_entry = st.radio("Are you a lateral entry student?", ("No", "Yes"))
 
 # Default BPUT credit points
 if lateral_entry == "Yes":
-    default_credits = [22, 24, 22, 22, 23, 6]  # Credits for 3rd to 8th semester
+    default_credits = [22, 24, 22, 22, 23, 6]  # 3rd to 8th semester
     semesters = range(3, 9)
 else:
-    default_credits = [26, 26, 24, 24, 24, 24, 20, 16]  # Credits for 1st to 8th semester
+    default_credits = [26, 26, 24, 24, 24, 24, 20, 16]  # 1st to 8th semester
     semesters = range(1, 9)
 
-# Input SGPA for each semester and allow modifying credit points
+# Input SGPA and credits
 sgpas = []
 modified_credits = []
 
-st.write("### Enter SGPA and Modify Credits (if needed):")
+st.write("### 📝 Enter SGPA and Modify Credits (if needed):")
 for i, sem in enumerate(semesters):
     col1, col2 = st.columns(2)
     with col1:
-        # Use placeholder instead of default value
         sgpas.append(
             st.text_input(f"SGPA for Semester {sem}", placeholder="Enter SGPA")
         )
@@ -92,22 +90,28 @@ for i, sem in enumerate(semesters):
             st.number_input(f"Credits for Semester {sem}", value=default_credits[i], min_value=1, max_value=30)
         )
 
-# Convert SGPA inputs from string to float, handling errors
-try:
-    sgpas = [float(sgpa) for sgpa in sgpas if sgpa.strip() != ""]
-except ValueError:
-    st.error("Please enter valid SGPA values!")
-
-# Calculate CGPA and percentage
+# Calculate CGPA and Percentage for any filled semester
 if st.button("Calculate"):
-    if len(sgpas) != len(semesters):
-        st.error("Please fill in SGPA values for all semesters!")
+    valid_sgpas = []
+    valid_credits = []
+
+    for i in range(len(sgpas)):
+        if sgpas[i].strip() != "":
+            try:
+                sgpa_val = float(sgpas[i])
+                valid_sgpas.append(sgpa_val)
+                valid_credits.append(modified_credits[i])
+            except ValueError:
+                st.error(f"Invalid SGPA input in Semester {semesters[i]}")
+
+    if len(valid_sgpas) == 0:
+        st.error("Please enter at least one valid SGPA to calculate!")
     else:
-        cgpa, percentage = calculate_percentage(sgpas, modified_credits)
-        st.write("### Result:")
-        st.write(f"**CGPA:** {cgpa:.2f}")
+        cgpa, percentage = calculate_percentage(valid_sgpas, valid_credits)
+        st.success("### Result:")
+        st.write(f"**CGPA (based on {len(valid_sgpas)} semester(s))**: {cgpa:.2f}")
         st.write(f"**Percentage:** {percentage:.2f}%")
 
-st.write("---")
-st.write("Developed with ❤️ by Shankarsan.")
-st.write("For any issues, contact me at: (kirantechno7@gmail.com)")
+st.markdown("---")
+st.markdown("Developed with ❤️ by Shankarsan.  
+For any issues, contact me at: [kirantechno7@gmail.com](mailto:kirantechno7@gmail.com)")
