@@ -52,7 +52,7 @@ lateral_entry = st.radio("Are you a lateral entry student?", ("No", "Yes"))
 
 # Default BPUT credit points
 if lateral_entry == "Yes":
-    default_credits = [24, 24, 24, 24, 20, 16]  # Credits for 3rd to 8th semester
+    default_credits = [22, 24, 22, 22, 23, 6]  # Credits for 3rd to 8th semester
     semesters = range(3, 9)
 else:
     default_credits = [26, 26, 24, 24, 24, 24, 20, 16]  # Credits for 1st to 8th semester
