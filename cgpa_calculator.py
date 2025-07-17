@@ -33,6 +33,19 @@ with st.expander("Click here to see how the calculator works"):
        - Verify or change the credit points if needed.
        - Click **Calculate** to see your CGPA and percentage.
     """)
+# Additional guide for getting SGPA and Credits
+with st.expander("📚 How to Get Your Semester-wise SGPA and Credits"):
+    st.write("""
+    To get your semester-wise **SGPA** and **credit details** from the official BPUT portal, follow these steps:
+
+    1. Visit: [https://exam.bput.ac.in/](https://exam.bput.ac.in/)
+    2. Click on **BPUT Student Login** and log in using your credentials.
+    3. On the **top-left corner**, click the **☰ hamburger menu icon**.
+    4. Choose **Exam History** from the menu.
+    5. You will see each semester's **SGPA** and **Total Credits**.
+
+    > ℹ️ Use this data to fill the SGPA and credit inputs in the calculator above.
+    """)
 
 # Ask if the user is a lateral entry student
 lateral_entry = st.radio("Are you a lateral entry student?", ("No", "Yes"))
