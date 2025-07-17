@@ -50,11 +50,18 @@ with st.expander("📚 How to Get Your Semester-wise SGPA and Credits"):
 # Shortcut: Direct CGPA to Percentage Converter
 st.markdown("## 🎯 Already Know Your CGPA?")
 with st.expander("Click here to directly convert CGPA to Percentage"):
-    user_cgpa = st.number_input("Enter your Final CGPA", min_value=0.0, max_value=10.0, step=0.01)
+    col1, col2 = st.columns(2)
+    with col1:
+        user_cgpa = st.number_input("Enter your Final CGPA", min_value=0.0, max_value=10.0, step=0.01)
+    with col2:
+        user_credits = st.number_input("Enter your Total Earned Credits", min_value=1, step=1)
+
     if st.button("Convert to Percentage"):
         percentage = (user_cgpa - 0.5) * 10
         st.success(f"Your Percentage is: **{percentage:.2f}%**")
         st.caption("📌 Formula used: (CGPA - 0.5) × 10")
+        st.info(f"Based on a total of **{user_credits} credits**.")
+
 
 
 # Ask if the user is a lateral entry student
