@@ -14,7 +14,7 @@ def calculate_percentage(sgpas, credits):
     return cgpa, percentage
 
 # Streamlit app
-st.title("BPUT CGPA to Percentage Calculator")
+st.title("BPUT CGPA to Percentage Calculator 📟")
 st.write("This calculator helps BPUT (Biju Patnaik University of Technology) students convert their CGPA to percentage based on SGPA and credit points.")
 
 # Explanation section
