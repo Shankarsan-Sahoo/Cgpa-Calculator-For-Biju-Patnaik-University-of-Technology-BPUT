@@ -1,5 +1,10 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title="BPUT CGPA Calculator",
+    page_icon="https://raw.githubusercontent.com/Shankarsan-Sahoo/Cgpa-Calculator-For-Biju-Patnaik-University-of-Technology-BPUT/refs/heads/main/favicon.ico"
+)
+
 # Function to calculate CGPA to percentage
 def calculate_percentage(sgpas, credits):
     total_score = sum(sgpa * credit for sgpa, credit in zip(sgpas, credits))
