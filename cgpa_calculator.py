@@ -18,7 +18,7 @@ st.title("BPUT CGPA to Percentage Calculator 📟")
 st.write("This calculator helps BPUT (Biju Patnaik University of Technology) students convert their CGPA to percentage based on SGPA and credit points.")
 
 # Explanation section
-with st.expander("Click here to see how the calculator works"):
+with st.expander("Click here to see how the calculator works?"):
     st.write("""
     ### How the Calculator Works:
     1. **Inputs Required:**
@@ -40,7 +40,7 @@ with st.expander("Click here to see how the calculator works"):
     """)
 
 # Additional guide for getting SGPA and Credits
-with st.expander("📚 How to Get Your Semester-wise SGPA and Credits"):
+with st.expander("📚 How to Get Your Semester-wise SGPA and Credits?"):
     st.write("""
     To get your semester-wise **SGPA** and **credit details** from the official BPUT portal, follow these steps:
 
